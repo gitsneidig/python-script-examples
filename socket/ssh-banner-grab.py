@@ -7,17 +7,27 @@
 # import socket module
 import socket
 
-# assign socket class instance to var s
-sock = socket.socket()
+# add list of ports to scan
+Ports = [21,22]
 
-# use socket connect method to make network connection to IP on port 22
-sock.connect(("192.168.1.101", 22))
+# loop through the list of ports to listen to
+for i in range (0,4):
+    
+    # assign socket class instance to var s
+    sock = socket.socket()
 
-# use receive method to read 1024 bytes from socket
-answer = sock.recv(1024)
+    # assign port for this loop to variable
+    Port = Ports[i]
 
-# print response data
-print (answer)
+    # use socket connect method to make network connection to IP on port 22
+    sock.connect(("192.168.1.101", Port))
 
-# close socket connection
-sock.close
+    # use receive method to read 1024 bytes from socket
+    answer = sock.recv(1024)
+
+    # print response
+    print(Port)
+    print (answer)
+
+    # close socket connection
+    sock.close
